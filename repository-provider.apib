@@ -1,0 +1,91 @@
+FORMAT: 1A
+HOST: http://tinkerware.io/api/v1/repository
+
+# Repository Provider API
+An API that manages the resources of a Repository hosting inside our API
+
+# Group Callback
+Resources related to the repository providers OAUTH Callback
+
+## Github Callback Collection [/gh_callback]
+### Get an OAUTH token [GET]
++ Response 200 (application/json)
+
+        {
+          "user": {
+            "id": 1,
+            "username": "tinkerware",
+            "access_token": "77e027c7447f468068a7d4fea41e7149a75a94088082c66fcf555de3977f69d3"
+          }
+        }
+
+## Repositories Collection [/{provider}/{username}/repos]
++ Parameters
+    + provider (required, string, `github`) ... `provider` of the service the repositories are hosted in
+    + username (required, string, `tinkerware`) ... `username` of the user to fetch repositores, has example value
+
+### List Repositories [GET]
++ Request
+
+        provider-token: 77e027c7447f468068a7d4fea41e7149a75a94088082c66fcf555de3977f69d3
+        authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
++ Response 200 (application/json)
+
+    + Header
+
+            provider-token: 77e027c7447f468068a7d4fea41e7149a75a94088082c66fcf555de3977f69d3
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+              "repositories":
+              [
+                {
+                  "provider": "github",
+                  "name": "ghost-blog-site",
+                  "full_name": "Tinker-Ware/ghost-blog-site",
+                  "description": "A blog",
+                  "private": false,
+                  "html_url": "https://github.com/Tinker-Ware/ghost-blog-site",
+                  "clone_url": "git@github.com:Tinker-Ware/ghost-blog-site.git",
+                  "ssh_url": "git@github.com:Tinker-Ware/ghost-blog-site.git"
+                }
+              ]
+            }
+
+## Repository [/{provider}/{username}/{repository}]
++ Parameters
+    + provider (required, string, `github`) ... `provider` of the service the repositories are hosted in
+    + username (required, string, `tinkerware`) ... `username` of the user to fetch repositores, has example value
+    + repository (required, string, `ghost-blog-site`) ... `repository` of the user to fetch repositores, has example value
+
+### Get a single repository [GET]
++ Request
+
+        provider-token: 77e027c7447f468068a7d4fea41e7149a75a94088082c66fcf555de3977f69d3
+        authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
++ Response 200 (application/json)
+
+    + Header
+
+            provider-token: 77e027c7447f468068a7d4fea41e7149a75a94088082c66fcf555de3977f69d3
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+              "repository":
+              {
+                "provider": "github",
+                "name": "ghost-blog-site",
+                "full_name": "Tinker-Ware/ghost-blog-site",
+                "description": "A blog",
+                "private": false,
+                "html_url": "https://github.com/Tinker-Ware/ghost-blog-site",
+                "clone_url": "git@github.com:Tinker-Ware/ghost-blog-site.git",
+                "ssh_url": "git@github.com:Tinker-Ware/ghost-blog-site.git"
+              }
+            }
