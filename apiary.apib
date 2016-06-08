@@ -1,47 +1,408 @@
 FORMAT: 1A
-HOST: http://www.google.com
+HOST: http://tinkerware.io/api/v1/cloud
 
-# Notes API
-Notes API is a *short texts saving* service similar to its physical paper presence on your table.
+# Cloud Provider API
+An API that manages the reources of a Cloud Provider user inside our API
 
-# Group Notes
-Notes related resources of the **Notes API**
+# Group Callback
+Resources related to the Digital Ocean OAUTH Callback
 
-## Notes Collection [/notes]
-### List all Notes [GET]
+## Digital Ocean Callback Collection [/do_callback]
+### Get an OAUTH token [GET]
 + Response 200 (application/json)
 
-        [{
-          "id": 1, "title": "Jogging in park"
-        }, {
-          "id": 2, "title": "Pick-up posters from post-office"
-        }]
+        {
+        	"access_token": "77e027c7447f468068a7d4fea41e7149a75a94088082c66fcf555de3977f69d3",
+        	"token_type": "bearer",
+        	"expires_in": "2592000",
+        	"refresh_token": "00a3aae641658d",
+        	"scope": "read write",
+        	"info": {
+            "name": "Sammy the Shark",
+            "email":"sammy@digitalocean.com",
+            "uuid":"e028b1b918853eca7fba208a9d7e9d29a6e93c57"
+          }
+        }
 
-### Create a Note [POST]
+# Group Keys
+Creates a SSH key entry
+
+## Keys Collection [/keys]
+### Create a Key [POST]
 + Request (application/json)
 
-        { "title": "Buy cheese and bread for breakfast." }
+    + Header
+
+            provider-token: 77e027c7447f468068a7d4fea41e7149a75a94088082c66fcf555de3977f69d3
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+              "name": "My little key",
+              "fingerprint": "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff",
+              "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAklOUpkDHrfHY17SbrmTIpNLTGK9Tjom/BWDSU
+                              GPl+nafzlHDTYW7hdI4yZ5ew18JH4JW9jbhUFrviQzM7xlELEVf4h9lFX5QVkbPppSwg0cda3
+                              Pbv7kOdJ/MTyBlWXFCR+HAo3FXRitBqxiX1nKhXpHAZsMciLq8V6RjsNAQwdsdMFvSlVK/7XA
+                              t3FaoJoAsncM1Q9x5+3V0Ww68/eIFmb1zuUFljQJKprrX88XypNDvjYNby6vw/Pb0rwert/En
+                              mZ+AW4OZPnTPI89ZPmVMLuayrD2cE86Z/il8b+gw3r3+1nKatmIkjn2so1d01QraTlMqVSsbx
+                              NrRFi9wrf+M7Q== schacon@mylaptop.local"
+            }
 
 + Response 201 (application/json)
 
-        { "id": 3, "title": "Buy cheese and bread for breakfast." }
+    + Header
 
-## Note [/notes/{id}]
-A single Note object with all its details
+            provider-token: 77e027c7447f468068a7d4fea41e7149a75a94088082c66fcf555de3977f69d3
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+              "id": 1,
+              "name": "My little key",
+              "provider": "digital_ocean",
+              "fingerprint": "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff",
+              "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAklOUpkDHrfHY17SbrmTIpNLTGK9Tjom/BWDSU
+                              GPl+nafzlHDTYW7hdI4yZ5ew18JH4JW9jbhUFrviQzM7xlELEVf4h9lFX5QVkbPppSwg0cda3
+                              Pbv7kOdJ/MTyBlWXFCR+HAo3FXRitBqxiX1nKhXpHAZsMciLq8V6RjsNAQwdsdMFvSlVK/7XA
+                              t3FaoJoAsncM1Q9x5+3V0Ww68/eIFmb1zuUFljQJKprrX88XypNDvjYNby6vw/Pb0rwert/En
+                              mZ+AW4OZPnTPI89ZPmVMLuayrD2cE86Z/il8b+gw3r3+1nKatmIkjn2so1d01QraTlMqVSsbx
+                              NrRFi9wrf+M7Q== schacon@mylaptop.local"
+            }
+
+### Retrieve a list of the keys [GET]
++ Request (application/json)
+
+    + Header
+
+            provider-token: 77e027c7447f468068a7d4fea41e7149a75a94088082c66fcf555de3977f69d3
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+              "name": "My little key",
+              "fingerprint": "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff",
+              "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAklOUpkDHrfHY17SbrmTIpNLTGK9Tjom/BWDSU
+                              GPl+nafzlHDTYW7hdI4yZ5ew18JH4JW9jbhUFrviQzM7xlELEVf4h9lFX5QVkbPppSwg0cda3
+                              Pbv7kOdJ/MTyBlWXFCR+HAo3FXRitBqxiX1nKhXpHAZsMciLq8V6RjsNAQwdsdMFvSlVK/7XA
+                              t3FaoJoAsncM1Q9x5+3V0Ww68/eIFmb1zuUFljQJKprrX88XypNDvjYNby6vw/Pb0rwert/En
+                              mZ+AW4OZPnTPI89ZPmVMLuayrD2cE86Z/il8b+gw3r3+1nKatmIkjn2so1d01QraTlMqVSsbx
+                              NrRFi9wrf+M7Q== schacon@mylaptop.local"
+            }
+
++ Response 200 (application/json)
+
+            {
+              "keys": [
+                {
+                  "id": 1,
+                  "name": "My little key",
+                  "provider": "digital_ocean",
+                  "fingerprint": "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff",
+                  "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAklOUpkDHrfHY17SbrmTIpNLTGK9Tjom/BWDSU
+                                  GPl+nafzlHDTYW7hdI4yZ5ew18JH4JW9jbhUFrviQzM7xlELEVf4h9lFX5QVkbPppSwg0cda3
+                                  Pbv7kOdJ/MTyBlWXFCR+HAo3FXRitBqxiX1nKhXpHAZsMciLq8V6RjsNAQwdsdMFvSlVK/7XA
+                                  t3FaoJoAsncM1Q9x5+3V0Ww68/eIFmb1zuUFljQJKprrX88XypNDvjYNby6vw/Pb0rwert/En
+                                  mZ+AW4OZPnTPI89ZPmVMLuayrD2cE86Z/il8b+gw3r3+1nKatmIkjn2so1d01QraTlMqVSsbx
+                                  NrRFi9wrf+M7Q== schacon@mylaptop.local"
+                }
+              ]
+            }
+
+
+## Key [/keys/{id}]
+A single Key object with all its details
 
 + Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
+    + id (required, number, `1`) ... Numeric `id` of the Key to perform action with. Has example value.
 
-### Retrieve a Note [GET]
+### Retrieve a Key [GET]
+Retrieves the list of keys in user account
+
++ Request
+
+        provider-token: 77e027c7447f468068a7d4fea41e7149a75a94088082c66fcf555de3977f69d3
+        authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
 + Response 200 (application/json)
 
     + Header
 
-            X-My-Header: The Value
+            provider-token: 77e027c7447f468068a7d4fea41e7149a75a94088082c66fcf555de3977f69d3
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
 
     + Body
 
-            { "id": 2, "title": "Pick-up posters from post-office" }
+            {
+              "id": 1,
+              "name": "My little key",
+              "provider": "digital_ocean",
+              "fingerprint": "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff",
+              "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAklOUpkDHrfHY17SbrmTIpNLTGK9Tjom/BWDSU
+                              GPl+nafzlHDTYW7hdI4yZ5ew18JH4JW9jbhUFrviQzM7xlELEVf4h9lFX5QVkbPppSwg0cda3
+                              Pbv7kOdJ/MTyBlWXFCR+HAo3FXRitBqxiX1nKhXpHAZsMciLq8V6RjsNAQwdsdMFvSlVK/7XA
+                              t3FaoJoAsncM1Q9x5+3V0Ww68/eIFmb1zuUFljQJKprrX88XypNDvjYNby6vw/Pb0rwert/En
+                              mZ+AW4OZPnTPI89ZPmVMLuayrD2cE86Z/il8b+gw3r3+1nKatmIkjn2so1d01QraTlMqVSsbx
+                              NrRFi9wrf+M7Q== schacon@mylaptop.local"
+            }
 
-### Remove a Note [DELETE]
+### Update a Key [PUT]
+
++ Request
+
+    + Header
+
+            provider-token: 77e027c7447f468068a7d4fea41e7149a75a94088082c66fcf555de3977f69d3
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+              "id": 1,
+              "name": "My new key",
+              "provider": "digital_ocean",
+              "fingerprint": "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff",
+              "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAklOUpkDHrfHY17SbrmTIpNLTGK9Tjom/BWDSU
+                              GPl+nafzlHDTYW7hdI4yZ5ew18JH4JW9jbhUFrviQzM7xlELEVf4h9lFX5QVkbPppSwg0cda3
+                              Pbv7kOdJ/MTyBlWXFCR+HAo3FXRitBqxiX1nKhXpHAZsMciLq8V6RjsNAQwdsdMFvSlVK/7XA
+                              t3FaoJoAsncM1Q9x5+3V0Ww68/eIFmb1zuUFljQJKprrX88XypNDvjYNby6vw/Pb0rwert/En
+                              mZ+AW4OZPnTPI89ZPmVMLuayrD2cE86Z/il8b+gw3r3+1nKatmIkjn2so1d01QraTlMqVSsbx
+                              NrRFi9wrf+M7Q== schacon@mylaptop.local"
+            }
+
++ Response 200 (application/json)
+
+    + Header
+
+            provider-token: 77e027c7447f468068a7d4fea41e7149a75a94088082c66fcf555de3977f69d3
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+              "id": 1,
+              "name": "My new key",
+              "provider": "digital_ocean",
+              "fingerprint": "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff",
+              "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAklOUpkDHrfHY17SbrmTIpNLTGK9Tjom/BWDSU
+                              GPl+nafzlHDTYW7hdI4yZ5ew18JH4JW9jbhUFrviQzM7xlELEVf4h9lFX5QVkbPppSwg0cda3
+                              Pbv7kOdJ/MTyBlWXFCR+HAo3FXRitBqxiX1nKhXpHAZsMciLq8V6RjsNAQwdsdMFvSlVK/7XA
+                              t3FaoJoAsncM1Q9x5+3V0Ww68/eIFmb1zuUFljQJKprrX88XypNDvjYNby6vw/Pb0rwert/En
+                              mZ+AW4OZPnTPI89ZPmVMLuayrD2cE86Z/il8b+gw3r3+1nKatmIkjn2so1d01QraTlMqVSsbx
+                              NrRFi9wrf+M7Q== schacon@mylaptop.local"
+            }
+
+### Remove a Key [DELETE]
++ Request
+
+    + Header
+
+            provider-token: 77e027c7447f468068a7d4fea41e7149a75a94088082c66fcf555de3977f69d3
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
 + Response 204
+
+    + Header
+
+            provider-token: 77e027c7447f468068a7d4fea41e7149a75a94088082c66fcf555de3977f69d3
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+# Group Instance
+Manages instances in different cloud providers
+
+## Instances Collection [/instances]
+### Create an Instance [POST]
++ Request
+
+    + Header
+
+            provider-token: 77e027c7447f468068a7d4fea41e7149a75a94088082c66fcf555de3977f69d3
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+              "name": "superserver",
+              "provider": "digital_ocean",
+              "region": "nyc1",
+              "operating_system": "ubuntu-14-04-x64",
+              "instance_name": "512mb",
+              "ipv6": true,
+              "private_networking": true,
+              "ssh_keys": [
+               {
+                 "id": 1,
+                 "fingerprint": "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff"
+               }
+              ]
+            }
+
++ Response 201 (application/json)
+
+    + Header
+
+            provider-token: 77e027c7447f468068a7d4fea41e7149a75a94088082c66fcf555de3977f69d3
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+              "id": 12345,
+              "name": "superserver",
+              "provider": "digital_ocean",
+              "region": "nyc1",
+              "operating_system": "ubuntu-14-04-x64",
+              "instance_name": "512mb",
+              "ipv6": true,
+              "private_networking": true,
+              "ssh_keys": [
+               {
+                 "id": 1,
+                 "fingerprint": "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff"
+               }
+              ]
+            }
+
+### Get list of instances by provider [GET]
++ Request
+
+    + Header
+
+            provider-token: 77e027c7447f468068a7d4fea41e7149a75a94088082c66fcf555de3977f69d3
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
++ Response 200 (application/json)
+
+    + Header
+
+            provider-token: 77e027c7447f468068a7d4fea41e7149a75a94088082c66fcf555de3977f69d3
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+              "instances": [
+                {
+                  "id": 12345,
+                  "name": "superserver",
+                  "provider": "digital_ocean",
+                  "region": "nyc1",
+                  "operating_system": "ubuntu-14-04-x64",
+                  "instance_name": "512mb",
+                  "ipv6": true,
+                  "private_networking": true,
+                  "ssh_keys": [
+                   {
+                     "id": 1,
+                     "fingerprint": "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff"
+                   }
+                  ]
+                }
+              ]
+            }
+
+## Instance [/instance/{id}]
+Operations over a single instance and provider
+
++ Parameters
+      + id (required, number, `1`) ... Numeric `id` of the instance to perform action with. Has example value.
+
+### Get an instance by ID and provider [GET]
++ Request
+
+    + Header
+
+            provider-token: 77e027c7447f468068a7d4fea41e7149a75a94088082c66fcf555de3977f69d3
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
++ Response 200 (application/json)
+
+    + Header
+
+            provider-token: 77e027c7447f468068a7d4fea41e7149a75a94088082c66fcf555de3977f69d3
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+              "id": 12345,
+              "name": "superserver",
+              "provider": "digital_ocean",
+              "region": "nyc1",
+              "operating_system": "ubuntu-14-04-x64",
+              "instance_name": "512mb",
+              "ipv6": true,
+              "private_networking": true,
+              "ssh_keys": [
+               {
+                 "id": 1,
+                 "fingerprint": "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff"
+               }
+              ]
+            }
+
+### Modify an Instance [PUT]
++ Request
+
+    + Header
+
+            provider-token: 77e027c7447f468068a7d4fea41e7149a75a94088082c66fcf555de3977f69d3
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+              "id": 12345,
+              "name": "awesomeserver",
+              "provider": "digital_ocean",
+              "region": "nyc1",
+              "operating_system": "ubuntu-14-04-x64",
+              "instance_name": "512mb",
+              "ipv6": true,
+              "private_networking": true,
+              "ssh_keys": [
+               {
+                 "id": 1,
+                 "fingerprint": "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff"
+               }
+              ]
+            }
+
+
++ Response 200 (application/json)
+
+    + Header
+
+            provider-token: 77e027c7447f468068a7d4fea41e7149a75a94088082c66fcf555de3977f69d3
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+              "id": 12345,
+              "name": "awesomeserver",
+              "provider": "digital_ocean",
+              "region": "nyc1",
+              "operating_system": "ubuntu-14-04-x64",
+              "instance_name": "512mb",
+              "ipv6": true,
+              "private_networking": true,
+              "ssh_keys": [
+               {
+                 "id": 1,
+                 "fingerprint": "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff"
+               }
+              ]
+            }
+
+### Destroy an instance [DELETE]
++ Request
+
+    + Header
+
+            provider-token: 77e027c7447f468068a7d4fea41e7149a75a94088082c66fcf555de3977f69d3
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
++ Response 204 (application/json)
