@@ -1,0 +1,436 @@
+FORMAT: 1A
+HOST: http://tinkerware.io/api/v1/users
+
+# Users API
+An API that manages the resources of an User inside our API
+
+# Group Users
+User management
+
+## Users Collection [/]
+### Register an user [POST]
++ Request
+
+        {
+          "user": {
+            "name": "Leonel Doberto",
+            "username": "iLeonelDoberto",
+            "email": "some@email.com",
+            "password": "somepassword"
+          }
+        }
+
++ Response 201 (application/json)
+
+        {
+            "username": "iLeonelDoberto",
+            "token": "GSjtfp4Gdrb5OovWSrVEwy78fe2IhbHmGcaYmSN8IQp5dxeJcH4wH8qDt3ut2Ulu"
+        }
+
+## User Collection [/{id}]
++ Parameters
+    + id (required, number, `1`) ... `id` of the user
+
+### Get an User [GET]
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
++ Response 200 (application/json)
+
+        {
+            "user": {
+                "id": 1,
+                "name": "Leonel Doberto",
+                "username": "iLeonelDoberto",
+                "email": "some@email.com"
+            }
+        }
+
+# Group Login
+Creates a new session
+## Login Collection [/login]
+
+### Create a new session [POST]
++ Request
+
+        {
+            "username": "iLeonelDoberto",
+            "password": "somepassword"
+        }
+
++ Response 201 (application/json)
+
+        {
+            "username": "iLeonelDoberto",
+            "token": "GSjtfp4Gdrb5OovWSrVEwy78fe2IhbHmGcaYmSN8IQp5dxeJcH4wH8qDt3ut2Ulu"
+        }
+
+# Group Information
+## Information Collection [/information]
+
+### Register User Information [POST]
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "user_id": 1,
+                "phone_number": "1234567890",
+                "address": "somewhere over the rainbow",
+                "company": "tinkerware"
+            }
+
++ Response 201 (application/json)
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "user_id": 1,
+                "phone_number": "1234567890",
+                "address": "somewhere over the rainbow",
+                "company": "tinkerware"
+            }
+
+### GET User Information [GET]
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
++ Response 200 (application/json)
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+                {
+                    "user_id": 1,
+                    "phone_number": "1234567890",
+                    "address": "somewhere over the rainbow",
+                    "company": "tinkerware"
+                }
+
+### Update User Information [PUT]
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "user_id": 1,
+                "phone_number": "1234567890",
+                "address": "somewhere over the hood",
+                "company": "tinkerware"
+            }
+
++ Response 200 (application/json)
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "user_id": 1,
+                "phone_number": "1234567890",
+                "address": "somewhere over the hood",
+                "company": "tinkerware"
+            }
+
+# Group Integration
+Manages the different integrations an user has for the platform (ir. Github, Facebook, etc.)
+
+## Integrations Collection [/integration]
+### Add a new Integration [POST]
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "integration": {
+                    "id": 1,
+                    "user_id": 1,
+                    "token": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
+                    "provider": "github",
+                    "expire_date": 1465504766
+                }
+            }
+
++ Response 201 (application/json)
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "integration":
+                {
+                    "id": 1,
+                    "user_id": 1,
+                    "token": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
+                    "provider": "github",
+                    "expire_date": 1465504766
+                    "valid": true
+                }
+            }
+
+### Get a list of integrations [GET]
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
++ Response 200 (application/json)
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+    + Body
+
+            {
+                "integrations": [
+                    {
+                        "id": 1,
+                        "user_id": 1,
+                        "token": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
+                        "provider": "github",
+                        "expire_date": 1465504766,
+                        "valid": true
+                    }
+                ]
+            }
+
+## Integration Collection [/integration/{id}]
+
+### Get a single Integration [GET]
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
++ Response 200 (application/json)
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "integration":{
+                    "id": 1,
+                    "user_id": 1,
+                    "token": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
+                    "provider": "github",
+                    "expire_date": 1465504766,
+                    "valid": true
+                }
+            }
+
+### Modify an existing Integration [PUT]
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "integration":{
+                    "id": 1,
+                    "user_id": 1,
+                    "token": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
+                    "provider": "github",
+                    "expire_date": 1465504766,
+                    "valid": true
+                }
+            }
+
++ Response 200 (application/json)
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "integration":{
+                    "id": 1,
+                    "user_id": 1,
+                    "token": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
+                    "provider": "github",
+                    "expire_date": 1465504766,
+                    "valid": true
+                }
+            }
+
+### Delete an Integration [DELETE]
+
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
++ Response 204
+
+
+# Group SSH Keys
+Manages the SSH keys an user has for the platform.
+
+## Integrations Collection [/sshkeys]
+### Add a new SSH Key [POST]
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "sshkey": {
+                    "user_id": 1,
+                    "key": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
+                    "title": "xps"
+                }
+            }
+
++ Response 201 (application/json)
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "sshkey": {
+                    "id": 1,
+                    "user_id": 1,
+                    "key": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
+                    "title": "xps"
+                }
+            }
+
+### Get a list of SSH keys [GET]
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
++ Response 200 (application/json)
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+    + Body
+
+            {
+                "sshekys": [
+                    {
+                        "id": 1,
+                        "user_id": 1,
+                        "key": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
+                        "title": "xps"
+                    }
+                ]
+            }
+
+## SSH Keys Collection [/sshkeys/{id}]
+
+### Get a single SSH Key [GET]
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
++ Response 200 (application/json)
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "sshkey": {
+                    "id": 1,
+                    "user_id": 1,
+                    "key": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
+                    "title": "xps"
+                }
+            }
+
+### Modify an existing Integration [PUT]
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "sshkey": {
+                    "id": 1,
+                    "user_id": 1,
+                    "key": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
+                    "title": "alienware"
+                }
+            }
+
++ Response 200 (application/json)
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "sshkey": {
+                        "id": 1,
+                        "user_id": 1,
+                        "key": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
+                        "title": "alienware"
+                }
+            }
+
+### Delete an SSH key [DELETE]
+
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
++ Response 204
