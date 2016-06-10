@@ -1,0 +1,19 @@
+{
+  "name": "tinkerware-blueprint",
+  "version": "1.0.0",
+  "description": "API documentation",
+  "dependencies": {
+    "aglio": "^2.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "cloud-provider": "node_modules/aglio/bin/aglio.js --theme-variables slate -i cloud-provider.apib -s",
+    "repository-provider": "node_modules/aglio/bin/aglio.js --theme-variables slate -i repository-provider.apib.apib -s"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tinker-Ware/tinkerware-blueprint.git"
+  },
+  "author": "TinkerWare",
+  "license": "MIT"
+}
