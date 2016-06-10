@@ -1,0 +1,528 @@
+FORMAT: 1A
+HOST: http://tinkerware.io/api/v1/project
+
+# Engine API
+Engine is a service to manage the projects a user owns.
+
+# Group Projects
+Project management
+
+## Project Collection [/]
+
+### Add a new Project [POST]
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "project": {
+                    "user_id": 1,
+                    "project_name": "tinkerware",
+                    "application_name": "simple_webpage",
+                    "server_provider": "digital_ocean",
+                    "configuration": {
+                        "a": "a",
+                        "b": "b"
+                    },
+                    "repository": {
+                        "provider": "github",
+                        "name": "ghost-blog"
+                    }
+                }
+            }
+
++ Response 201 (application/json)
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "project": {
+                    "id": "507f1f77bcf86cd799439011",
+                    "user_id": 1,
+                    "project_name": "tinkerware",
+                    "application_name": "simple_webpage",
+                    "server_provider": "digital_ocean",
+                    "configuration": {
+                        "a": "a",
+                        "b": "b"
+                    },
+                    "repository": {
+                        "provider": "github",
+                        "name": "ghost-blog"
+                    }
+                }
+            }
+
+### Get a list of an user Projects [GET]
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
++ Response 200 (application/json)
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+    + Body
+
+            {
+                "projects": [
+                    {
+                        "id": "507f1f77bcf86cd799439011",
+                        "user_id": 1,
+                        "project_name": "tinkerware",
+                        "application_name": "simple_webpage",
+                        "server_provider": "digital_ocean",
+                        "configuration": {
+                            "a": "a",
+                            "b": "b"
+                        },
+                        "repository": {
+                            "provider": "github",
+                            "name": "ghost-blog"
+                        }
+                    }
+                ]
+            }
+
+## Project Collection [/{id}]
++ Parameters
+    + id (required, string, `507f1f77bcf86cd799439011`) ... `id` of the project
+
+### Get a single Project [GET]
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
++ Response 200 (application/json)
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "project": {
+                    "id": "507f1f77bcf86cd799439011",
+                    "user_id": 1,
+                    "project_name": "tinkerware",
+                    "application_name": "simple_webpage",
+                    "server_provider": "digital_ocean",
+                    "configuration": {
+                        "a": "a",
+                        "b": "b"
+                    },
+                    "repository": {
+                        "provider": "github",
+                        "name": "ghost-blog"
+                    }
+                }
+            }
+
+### Modify an existing Project [PUT]
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "project": {
+                    "id": "507f1f77bcf86cd799439011",
+                    "user_id": 1,
+                    "project_name": "tinkerware.web",
+                    "application_name": "simple_webpage",
+                    "server_provider": "digital_ocean",
+                    "configuration": {
+                        "a": "a",
+                        "b": "b"
+                    },
+                    "repository": {
+                        "provider": "github",
+                        "name": "ghost-blog"
+                    }
+                }
+            }
+
++ Response 200 (application/json)
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "project": {
+                    "id": "507f1f77bcf86cd799439011",
+                    "user_id": 1,
+                    "project_name": "tinkerware.web",
+                    "application_name": "simple_webpage",
+                    "server_provider": "digital_ocean",
+                    "configuration": {
+                        "a": "a",
+                        "b": "b"
+                    },
+                    "repository": {
+                        "provider": "github",
+                        "name": "ghost-blog"
+                    }
+                }
+            }
+
+### Delete a Project [DELETE]
+
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
++ Response 204
+
+# Group Deploy
+Project management
+
+## Deploy Collection [/{projectid}/deploys]
+
++ Parameters
+    + projectid (required, string, `507f1f77bcf86cd799439011`) ... `projectid` of the project
+
+### Add a new Deploy [POST]
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "deploy": {
+                    "user_id": 1,
+                    "project_id": "507f1f77bcf86cd799439011"
+                    "deployet_at": "2014-04-17T14:00:00.030Z",
+                    "note": "nightly build",
+                    "commit": "fc5e502cfc908db401394337548131cc739e777f",
+                }
+            }
+
++ Response 201 (application/json)
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "deploy": {
+                    "id": 1,
+                    "user_id": 1,
+                    "project_id": "34nqlQXdoKisht4kjWDF5eL7"
+                    "deployet_at": "2014-04-17T14:00:00.030Z",
+                    "note": "nightly build",
+                    "commit": "fc5e502cfc908db401394337548131cc739e777f",
+                    "status": "pending"
+                }
+            }
+
+### Get a list of a projects deploys [GET]
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
++ Response 200 (application/json)
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+    + Body
+
+            {
+                "deploys": [
+                    {
+                        "id": 1,
+                        "user_id": 1,
+                        "project_id": "34nqlQXdoKisht4kjWDF5eL7"
+                        "deployet_at": "2014-04-17T14:00:00.030Z",
+                        "note": "nightly build",
+                        "commit": "fc5e502cfc908db401394337548131cc739e777f",
+                        "status": "pending"
+                    }
+                ]
+            }
+
+## Deploy Collection [/{projectid}/deploys/{id}]
++ Parameters
+    + id (required, string, `507f1f77bcf86cd799439011`) ... `id` of the deploy
+    + projectid (required, string, `507f1f77bcf86cd799439011`) ... `projectid` of the project
+
+### Get a single Deploy [GET]
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
++ Response 200 (application/json)
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "deploy": {
+                    "id": 1,
+                    "user_id": 1,
+                    "project_id": "34nqlQXdoKisht4kjWDF5eL7"
+                    "deployet_at": "2014-04-17T14:00:00.030Z",
+                    "note": "nightly build",
+                    "commit": "fc5e502cfc908db401394337548131cc739e777f",
+                    "status": "pending"
+                }
+            }
+
+### Modify an existing Project [PUT]
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "deploy": {
+                    "id": 1,
+                    "user_id": 1,
+                    "project_id": "34nqlQXdoKisht4kjWDF5eL7"
+                    "deployet_at": "2014-04-17T14:00:00.030Z",
+                    "note": "nightly build",
+                    "commit": "fc5e502cfc908db401394337548131cc739e777f",
+                    "status": "building"
+                }
+            }
+
++ Response 200 (application/json)
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "deploy": {
+                    "id": 1,
+                    "user_id": 1,
+                    "project_id": "34nqlQXdoKisht4kjWDF5eL7"
+                    "deployet_at": "2014-04-17T14:00:00.030Z",
+                    "note": "nightly build",
+                    "commit": "fc5e502cfc908db401394337548131cc739e777f",
+                    "status": "building"
+                }
+            }
+
+### Delete a Deploy [DELETE]
+
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
++ Response 204
+
+# Group Server
+Server management
+
+## Server Collection [/{projectid}/servers]
++ Parameters
+    + projectid (required, string, `507f1f77bcf86cd799439011`) ... `projectid` of the project
+
+### Add a new Server [POST]
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "server": {
+                    "deploy_id": "507f1f77bcf86cd799439011",
+                    "project_id": "507f1f77bcf86cd799439011",
+                    "ip": "192.168.1.1",
+                    "operating_system": "ubuntu-14-04-x64",
+                    "instance_name": "521mb",
+                    "region": "nyc1",
+                    "hostname": "tinkerware.com",
+                    "status": "not created",
+                    "provider": "digital_ocean"
+                }
+            }
+
++ Response 201 (application/json)
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "server": {
+                    "id": "5xOQluuygRCrGFn7QcT1zDiS",
+                    "deploy_id": "507f1f77bcf86cd799439011",
+                    "project_id": "507f1f77bcf86cd799439011",
+                    "ip": "192.168.1.1",
+                    "operating_system": "ubuntu-14-04-x64",
+                    "instance_name": "521mb",
+                    "region": "nyc1",
+                    "hostname": "tinkerware.com",
+                    "status": "not created",
+                    "provider": "digital_ocean"
+                }
+            }
+
+### Get a list of a projects deploys [GET]
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
++ Response 200 (application/json)
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+    + Body
+
+            {
+                "servers": [
+                    {
+                        "id": "5xOQluuygRCrGFn7QcT1zDiS",
+                        "deploy_id": "507f1f77bcf86cd799439011",
+                        "project_id": "507f1f77bcf86cd799439011",
+                        "ip": "192.168.1.1",
+                        "operating_system": "ubuntu-14-04-x64",
+                        "instance_name": "521mb",
+                        "region": "nyc1",
+                        "hostname": "tinkerware.com",
+                        "status": "not created",
+                        "provider": "digital_ocean"
+                    }
+                ]
+            }
+
+## Server Collection [/{projectid}/servers/{id}]
++ Parameters
+    + id (required, string, `507f1f77bcf86cd799439011`) ... `id` of the Server
+    + projectid (required, string, `507f1f77bcf86cd799439011`) ... `projectid` of the project
+
+### Get a single Server [GET]
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
++ Response 200 (application/json)
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "server": {
+                    "id": "5xOQluuygRCrGFn7QcT1zDiS",
+                    "deploy_id": "507f1f77bcf86cd799439011",
+                    "project_id": "507f1f77bcf86cd799439011",
+                    "ip": "192.168.1.1",
+                    "operating_system": "ubuntu-14-04-x64",
+                    "instance_name": "521mb",
+                    "region": "nyc1",
+                    "hostname": "tinkerware.com",
+                    "status": "not created",
+                    "provider": "digital_ocean"
+                }
+            }
+
+### Modify an existing Project [PUT]
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "server": {
+                    "id": "5xOQluuygRCrGFn7QcT1zDiS",
+                    "deploy_id": "507f1f77bcf86cd799439011",
+                    "project_id": "507f1f77bcf86cd799439011",
+                    "ip": "192.168.1.1",
+                    "operating_system": "ubuntu-14-04-x64",
+                    "instance_name": "521mb",
+                    "region": "nyc1",
+                    "hostname": "tinkerware.com",
+                    "status": "building",
+                    "provider": "digital_ocean"
+                }
+            }
+
+
++ Response 200 (application/json)
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "server": {
+                    "id": "5xOQluuygRCrGFn7QcT1zDiS",
+                    "deploy_id": "507f1f77bcf86cd799439011",
+                    "project_id": "507f1f77bcf86cd799439011",
+                    "ip": "192.168.1.1",
+                    "operating_system": "ubuntu-14-04-x64",
+                    "instance_name": "521mb",
+                    "region": "nyc1",
+                    "hostname": "tinkerware.com",
+                    "status": "building",
+                    "provider": "digital_ocean"
+                }
+            }
+
+### Delete a Deploy [DELETE]
+
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
++ Response 204
