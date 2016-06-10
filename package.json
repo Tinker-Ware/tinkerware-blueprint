@@ -8,7 +8,9 @@
   "devDependencies": {},
   "scripts": {
     "cloud-provider": "node_modules/aglio/bin/aglio.js --theme-variables slate -i cloud-provider.apib -s",
-    "repository-provider": "node_modules/aglio/bin/aglio.js --theme-variables slate -i repository-provider.apib.apib -s"
+    "engine": "node_modules/aglio/bin/aglio.js --theme-variables slate -i engine.apib -s",
+    "repository-provider": "node_modules/aglio/bin/aglio.js --theme-variables slate -i repository-provider.apib -s",
+    "users": "node_modules/aglio/bin/aglio.js --theme-variables slate -i users.apib -s"
   },
   "repository": {
     "type": "git",
