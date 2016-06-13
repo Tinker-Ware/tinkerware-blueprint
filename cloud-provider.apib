@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://tinkerware.io/api/v1/cloud
+HOST: http://tinkerware.io
 
 # Cloud Provider API
 An API that manages the reources of a Cloud Provider user inside our API
@@ -7,7 +7,7 @@ An API that manages the reources of a Cloud Provider user inside our API
 # Group Callback
 Resources related to the Digital Ocean OAUTH Callback
 
-## Digital Ocean Callback Collection [/do_callback]
+## Digital Ocean Callback Collection [/api/v1/cloud/do_callback]
 ### Get an OAUTH token [GET]
 + Response 200 (application/json)
 
@@ -112,7 +112,7 @@ Creates a SSH key entry
             }
 
 
-## Key [/keys/{id}]
+## Key [/api/v1/cloud/keys/{id}]
 A single Key object with all its details
 
 + Parameters
@@ -212,7 +212,7 @@ Retrieves the list of keys in user account
 # Group Instance
 Manages instances in different cloud providers
 
-## Instances Collection [/instances]
+## Instances Collection [/api/v1/cloud/instances]
 ### Create an Instance [POST]
 + Request
 
@@ -303,7 +303,7 @@ Manages instances in different cloud providers
               ]
             }
 
-## Instance [/instance/{id}]
+## Instance [/api/v1/cloud/instance/{id}]
 Operations over a single instance and provider
 
 + Parameters
