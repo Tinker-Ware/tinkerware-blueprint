@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://tinkerware.io/api/v1/project
+HOST: http://tinkerware.io
 
 # Engine API
 Engine is a service to manage the projects a user owns.
@@ -7,7 +7,7 @@ Engine is a service to manage the projects a user owns.
 # Group Projects
 Project management
 
-## Project Collection [/]
+## Project Collection [/api/v1/project]
 
 ### Add a new Project [POST]
 + Request
@@ -94,7 +94,7 @@ Project management
                 ]
             }
 
-## Project Collection [/{id}]
+## Project Collection [/api/v1/project/{id}]
 + Parameters
     + id (required, string, `507f1f77bcf86cd799439011`) ... `id` of the project
 
@@ -197,7 +197,7 @@ Project management
 # Group Deploy
 Project management
 
-## Deploy Collection [/{projectid}/deploys]
+## Deploy Collection [/api/v1/project/{projectid}/deploys]
 
 + Parameters
     + projectid (required, string, `507f1f77bcf86cd799439011`) ... `projectid` of the project
@@ -268,7 +268,7 @@ Project management
                 ]
             }
 
-## Deploy Collection [/{projectid}/deploys/{id}]
+## Deploy Collection [/api/v1/project/{projectid}/deploys/{id}]
 + Parameters
     + id (required, string, `507f1f77bcf86cd799439011`) ... `id` of the deploy
     + projectid (required, string, `507f1f77bcf86cd799439011`) ... `projectid` of the project
@@ -354,7 +354,7 @@ Project management
 # Group Server
 Server management
 
-## Server Collection [/{projectid}/servers]
+## Server Collection [/api/v1/project/{projectid}/servers]
 + Parameters
     + projectid (required, string, `507f1f77bcf86cd799439011`) ... `projectid` of the project
 
@@ -434,7 +434,7 @@ Server management
                 ]
             }
 
-## Server Collection [/{projectid}/servers/{id}]
+## Server Collection [/api/v1/project/{projectid}/servers/{id}]
 + Parameters
     + id (required, string, `507f1f77bcf86cd799439011`) ... `id` of the Server
     + projectid (required, string, `507f1f77bcf86cd799439011`) ... `projectid` of the project
