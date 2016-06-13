@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://tinkerware.io/api/v1/repository
+HOST: http://tinkerware.io
 
 # Repository Provider API
 An API that manages the resources of a Repository hosting inside our API
@@ -7,7 +7,7 @@ An API that manages the resources of a Repository hosting inside our API
 # Group Callback
 Resources related to the repository providers OAUTH Callback
 
-## Github Callback Collection [/gh_callback]
+## Github Callback Collection [/api/v1/repository/gh_callback]
 ### Get an OAUTH token [GET]
 + Response 200 (application/json)
 
@@ -19,7 +19,7 @@ Resources related to the repository providers OAUTH Callback
           }
         }
 
-## Repositories Collection [/{provider}/{username}/repos]
+## Repositories Collection [/api/v1/repository/{provider}/{username}/repos]
 + Parameters
     + provider (required, string, `github`) ... `provider` of the service the repositories are hosted in
     + username (required, string, `tinkerware`) ... `username` of the user to fetch repositores, has example value
@@ -55,7 +55,7 @@ Resources related to the repository providers OAUTH Callback
               ]
             }
 
-## Repository [/{provider}/{username}/{repository}]
+## Repository [/api/v1/repository/{provider}/{username}/{repository}]
 + Parameters
     + provider (required, string, `github`) ... `provider` of the service the repositories are hosted in
     + username (required, string, `tinkerware`) ... `username` of the user to fetch repositores, has example value
