@@ -9,23 +9,23 @@ User management
 
 ## Users Collection [/api/v1/users]
 ### Register an user [POST]
-+ Request
++ Request (application/json)
 
-        {
-          "user": {
-            "name": "Leonel Doberto",
-            "username": "iLeonelDoberto",
-            "email": "some@email.com",
-            "password": "somepassword"
-          }
-        }
+    {
+      "user": {
+        "name": "Leonel Roberto",
+        "username": "iLeonelRoberto",
+        "email": "some@email.com",
+        "password": "somepassword"
+      }
+    }
 
 + Response 201 (application/json)
 
-        {
-            "username": "iLeonelDoberto",
-            "token": "GSjtfp4Gdrb5OovWSrVEwy78fe2IhbHmGcaYmSN8IQp5dxeJcH4wH8qDt3ut2Ulu"
-        }
+    {
+      "username": "iLeonelRoberto",
+      "token": "GSjtfp4Gdrb5OovWSrVEwy78fe2IhbHmGcaYmSN8IQp5dxeJcH4wH8qDt3ut2Ulu"
+    }
 
 ## User Collection [/api/v1/users/{id}]
 + Parameters
@@ -41,12 +41,12 @@ User management
 + Response 200 (application/json)
 
         {
-            "user": {
-                "id": 1,
-                "name": "Leonel Doberto",
-                "username": "iLeonelDoberto",
-                "email": "some@email.com"
-            }
+          "user": {
+            "id": 1,
+            "name": "Leonel Roberto",
+            "username": "iLeonelRoberto",
+            "email": "some@email.com"
+          }
         }
 
 # Group Login
@@ -54,18 +54,22 @@ Creates a new session
 ## Login Collection [/api/v1/users/login]
 
 ### Create a new session [POST]
-+ Request
++ Request (application/json)
 
         {
-            "username": "iLeonelDoberto",
+          "sesion": {
+            "username": "iLeonelRoberto",
             "password": "somepassword"
+          }
         }
 
 + Response 201 (application/json)
 
         {
-            "username": "iLeonelDoberto",
+          "sesion": {
+            "username": "iLeonelRoberto",
             "token": "GSjtfp4Gdrb5OovWSrVEwy78fe2IhbHmGcaYmSN8IQp5dxeJcH4wH8qDt3ut2Ulu"
+          }
         }
 
 # Group Information
@@ -74,7 +78,7 @@ Creates a new session
     + userid (required, number, `1`) ... `userid` of the user
 
 ### Register User Information [POST]
-+ Request
++ Request (application/json)
 
     + Header
 
@@ -83,10 +87,12 @@ Creates a new session
     + Body
 
             {
+              "user": {
                 "user_id": 1,
                 "phone_number": "1234567890",
                 "address": "somewhere over the rainbow",
                 "company": "tinkerware"
+              }
             }
 
 + Response 201 (application/json)
@@ -98,10 +104,12 @@ Creates a new session
     + Body
 
             {
+              "user": {
                 "user_id": 1,
                 "phone_number": "1234567890",
                 "address": "somewhere over the rainbow",
                 "company": "tinkerware"
+              }
             }
 
 ### GET User Information [GET]
@@ -119,15 +127,17 @@ Creates a new session
 
     + Body
 
-                {
-                    "user_id": 1,
-                    "phone_number": "1234567890",
-                    "address": "somewhere over the rainbow",
-                    "company": "tinkerware"
-                }
+            {
+              "user": {
+                "user_id": 1,
+                "phone_number": "1234567890",
+                "address": "somewhere over the rainbow",
+                "company": "tinkerware"
+              }
+            }
 
 ### Update User Information [PUT]
-+ Request
++ Request (application/json)
 
     + Header
 
@@ -136,10 +146,12 @@ Creates a new session
     + Body
 
             {
+              "user": {
                 "user_id": 1,
                 "phone_number": "1234567890",
                 "address": "somewhere over the hood",
                 "company": "tinkerware"
+              }
             }
 
 + Response 200 (application/json)
@@ -151,10 +163,12 @@ Creates a new session
     + Body
 
             {
+              "user": {
                 "user_id": 1,
                 "phone_number": "1234567890",
                 "address": "somewhere over the hood",
                 "company": "tinkerware"
+              }
             }
 
 # Group Integration
@@ -165,7 +179,7 @@ Manages the different integrations an user has for the platform (ir. Github, Fac
     + userid (required, number, `1`) ... `userid` of the user
 
 ### Add a new Integration [POST]
-+ Request
++ Request (application/json)
 
     + Header
 
@@ -174,13 +188,13 @@ Manages the different integrations an user has for the platform (ir. Github, Fac
     + Body
 
             {
-                "integration": {
-                    "id": 1,
-                    "user_id": 1,
-                    "token": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
-                    "provider": "github",
-                    "expire_date": 1465504766
-                }
+              "integration": {
+                "id": 1,
+                "user_id": 1,
+                "token": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
+                "provider": "github",
+                "expire_date": 1465504766
+              }
             }
 
 + Response 201 (application/json)
@@ -192,15 +206,15 @@ Manages the different integrations an user has for the platform (ir. Github, Fac
     + Body
 
             {
-                "integration":
-                {
-                    "id": 1,
-                    "user_id": 1,
-                    "token": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
-                    "provider": "github",
-                    "expire_date": 1465504766
-                    "valid": true
-                }
+              "integration":
+              {
+                "id": 1,
+                "user_id": 1,
+                "token": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
+                "provider": "github",
+                "expire_date": 1465504766
+                "valid": true
+              }
             }
 
 ### Get a list of integrations [GET]
@@ -217,16 +231,16 @@ Manages the different integrations an user has for the platform (ir. Github, Fac
     + Body
 
             {
-                "integrations": [
-                    {
-                        "id": 1,
-                        "user_id": 1,
-                        "token": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
-                        "provider": "github",
-                        "expire_date": 1465504766,
-                        "valid": true
-                    }
-                ]
+              "integrations": [
+                {
+                  "id": 1,
+                  "user_id": 1,
+                  "token": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
+                  "provider": "github",
+                  "expire_date": 1465504766,
+                  "valid": true
+                }
+              ]
             }
 
 ## Integration Collection [/api/v1/users/{userid}/integration/{id}]
@@ -249,18 +263,18 @@ Manages the different integrations an user has for the platform (ir. Github, Fac
     + Body
 
             {
-                "integration":{
-                    "id": 1,
-                    "user_id": 1,
-                    "token": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
-                    "provider": "github",
-                    "expire_date": 1465504766,
-                    "valid": true
-                }
+              "integration":{
+                "id": 1,
+                "user_id": 1,
+                "token": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
+                "provider": "github",
+                "expire_date": 1465504766,
+                "valid": true
+              }
             }
 
 ### Modify an existing Integration [PUT]
-+ Request
++ Request (application/json)
 
     + Header
 
@@ -269,14 +283,14 @@ Manages the different integrations an user has for the platform (ir. Github, Fac
     + Body
 
             {
-                "integration":{
-                    "id": 1,
-                    "user_id": 1,
-                    "token": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
-                    "provider": "github",
-                    "expire_date": 1465504766,
-                    "valid": true
-                }
+              "integration":{
+                "id": 1,
+                "user_id": 1,
+                "token": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
+                "provider": "github",
+                "expire_date": 1465504766,
+                "valid": true
+              }
             }
 
 + Response 200 (application/json)
@@ -288,14 +302,14 @@ Manages the different integrations an user has for the platform (ir. Github, Fac
     + Body
 
             {
-                "integration":{
-                    "id": 1,
-                    "user_id": 1,
-                    "token": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
-                    "provider": "github",
-                    "expire_date": 1465504766,
-                    "valid": true
-                }
+              "integration":{
+                "id": 1,
+                "user_id": 1,
+                "token": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
+                "provider": "github",
+                "expire_date": 1465504766,
+                "valid": true
+              }
             }
 
 ### Delete an Integration [DELETE]
@@ -317,7 +331,7 @@ Manages the SSH keys an user has for the platform.
     + userid (required, number, `1`) ... `userid` of the user
 
 ### Add a new SSH Key [POST]
-+ Request
++ Request (application/json)
 
     + Header
 
@@ -326,11 +340,11 @@ Manages the SSH keys an user has for the platform.
     + Body
 
             {
-                "sshkey": {
-                    "user_id": 1,
-                    "key": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
-                    "title": "xps"
-                }
+              "sshkey": {
+                "user_id": 1,
+                "key": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
+                "title": "xps"
+              }
             }
 
 + Response 201 (application/json)
@@ -342,12 +356,12 @@ Manages the SSH keys an user has for the platform.
     + Body
 
             {
-                "sshkey": {
-                    "id": 1,
-                    "user_id": 1,
-                    "key": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
-                    "title": "xps"
-                }
+              "sshkey": {
+                "id": 1,
+                "user_id": 1,
+                "key": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
+                "title": "xps"
+              }
             }
 
 ### Get a list of SSH keys [GET]
@@ -358,20 +372,21 @@ Manages the SSH keys an user has for the platform.
             authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
 
 + Response 200 (application/json)
+
     + Header
 
             authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
     + Body
 
             {
-                "sshekys": [
-                    {
-                        "id": 1,
-                        "user_id": 1,
-                        "key": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
-                        "title": "xps"
-                    }
-                ]
+              "sshekys": [
+                {
+                  "id": 1,
+                  "user_id": 1,
+                  "key": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
+                  "title": "xps"
+                }
+              ]
             }
 
 ## SSH Keys Collection [/api/v1/users/{userid}/sshkeys/{id}]
@@ -395,16 +410,16 @@ Manages the SSH keys an user has for the platform.
     + Body
 
             {
-                "sshkey": {
-                    "id": 1,
-                    "user_id": 1,
-                    "key": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
-                    "title": "xps"
-                }
+              "sshkey": {
+                "id": 1,
+                "user_id": 1,
+                "key": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
+                "title": "xps"
+              }
             }
 
 ### Modify an existing Integration [PUT]
-+ Request
++ Request (application/json)
 
     + Header
 
@@ -413,12 +428,12 @@ Manages the SSH keys an user has for the platform.
     + Body
 
             {
-                "sshkey": {
-                    "id": 1,
-                    "user_id": 1,
-                    "key": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
-                    "title": "alienware"
-                }
+              "sshkey": {
+                "id": 1,
+                "user_id": 1,
+                "key": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
+                "title": "alienware"
+              }
             }
 
 + Response 200 (application/json)
@@ -430,12 +445,12 @@ Manages the SSH keys an user has for the platform.
     + Body
 
             {
-                "sshkey": {
-                        "id": 1,
-                        "user_id": 1,
-                        "key": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
-                        "title": "alienware"
-                }
+              "sshkey": {
+                "id": 1,
+                "user_id": 1,
+                "key": "QTD1EKoYQj7Qtw2EFRN1R8gUvdB3f5Y4BWN3N9NSqWktWFnYTX5LNlxaMRilSG2l",
+                "title": "alienware"
+              }
             }
 
 ### Delete an SSH key [DELETE]
