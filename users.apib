@@ -13,8 +13,6 @@ User management
 
     {
       "user": {
-        "name": "Leonel Roberto",
-        "username": "iLeonelRoberto",
         "email": "some@email.com",
         "password": "somepassword"
       }
@@ -23,8 +21,10 @@ User management
 + Response 201 (application/json)
 
     {
-      "username": "iLeonelRoberto",
-      "token": "GSjtfp4Gdrb5OovWSrVEwy78fe2IhbHmGcaYmSN8IQp5dxeJcH4wH8qDt3ut2Ulu"
+      "user_session": {
+        "email": "some@email.com",
+        "token": "qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf"
+      }
     }
 
 ## User Collection [/api/v1/users/{id}]
@@ -57,8 +57,8 @@ Creates a new session
 + Request (application/json)
 
         {
-          "sesion": {
-            "username": "iLeonelRoberto",
+          "user": {
+            "email": "some@email.com",
             "password": "somepassword"
           }
         }
@@ -66,9 +66,9 @@ Creates a new session
 + Response 201 (application/json)
 
         {
-          "sesion": {
-            "username": "iLeonelRoberto",
-            "token": "GSjtfp4Gdrb5OovWSrVEwy78fe2IhbHmGcaYmSN8IQp5dxeJcH4wH8qDt3ut2Ulu"
+          "user_session": {
+            "email": "some@email.com",
+            "token": "qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf"
           }
         }
 
@@ -87,8 +87,10 @@ Creates a new session
     + Body
 
             {
-              "user": {
+              "user_information": {
                 "user_id": 1,
+                "name": "Leonel Roberto",
+                "username": "iLeonelRoberto",
                 "phone_number": "1234567890",
                 "address": "somewhere over the rainbow",
                 "company": "tinkerware"
@@ -104,8 +106,10 @@ Creates a new session
     + Body
 
             {
-              "user": {
+              "user_information": {
                 "user_id": 1,
+                "name": "Leonel Roberto",
+                "username": "iLeonelRoberto",
                 "phone_number": "1234567890",
                 "address": "somewhere over the rainbow",
                 "company": "tinkerware"
@@ -128,8 +132,10 @@ Creates a new session
     + Body
 
             {
-              "user": {
+              "user_information": {
                 "user_id": 1,
+                "name": "Leonel Roberto",
+                "username": "iLeonelRoberto",
                 "phone_number": "1234567890",
                 "address": "somewhere over the rainbow",
                 "company": "tinkerware"
@@ -146,8 +152,10 @@ Creates a new session
     + Body
 
             {
-              "user": {
+              "user_information": {
                 "user_id": 1,
+                "name": "Leonel Roberto",
+                "username": "iLeonelRoberto",
                 "phone_number": "1234567890",
                 "address": "somewhere over the hood",
                 "company": "tinkerware"
@@ -163,8 +171,10 @@ Creates a new session
     + Body
 
             {
-              "user": {
+              "user_information": {
                 "user_id": 1,
+                "name": "Leonel Roberto",
+                "username": "iLeonelRoberto",
                 "phone_number": "1234567890",
                 "address": "somewhere over the hood",
                 "company": "tinkerware"
