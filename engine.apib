@@ -371,13 +371,31 @@ Server management
                 "server": {
                     "deploy_id": "a3hk4lf2g0n1vxny5mninv8fsqwzqf",
                     "project_id": "507f1f77bcf86cd799439011",
-                    "ip": "192.168.1.1",
+                    "instance_id": "1",
                     "operating_system": "debian-8-x64",
                     "instance_name": "521mb",
                     "region": "nyc1",
                     "hostname": "tinkerware.com",
-                    "status": "created",
-                    "provider": "digital_ocean"
+                    "status": "Created",
+                    "provider": "digital_ocean",
+                    "networks": {
+                        "v4": [
+                          {
+                            "ip_address": "104.131.186.241",
+                            "netmask": "255.255.240.0",
+                            "gateway": "104.131.176.1",
+                            "type": "public"
+                          }
+                        ],
+                        "v6": [
+                          {
+                            "ip_address": "2604:A880:0800:0010:0000:0000:031D:2001",
+                            "netmask": 64,
+                            "gateway": "2604:A880:0800:0010:0000:0000:0000:0001",
+                            "type": "public"
+                          }
+                        ]
+                      }
                 }
             }
 
