@@ -41,8 +41,8 @@ Creates a SSH key entry
     + Body
 
             {
-              "key": {
-                "name": "My key",
+              key: {
+                "name": "My little key",
                 "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAklOUpkDHrfHY17SbrmTIpNLTGK9Tjom/BWDSUGPl+nafzlHDTYW7hdI4yZ5ew18JH4JW9jbhUFrviQzM7xlELEVf4h9lFX5QVkbPppSwg0cda3Pbv7kOdJ/MTyBlWXFCR+HAo3FXRitBqxiX1nKhXpHAZsMciLq8V6RjsNAQwdsdMFvSlVK/7XAt3FaoJoAsncM1Q9x5+3V0Ww68/eIFmb1zuUFljQJKprrX88XypNDvjYNby6vw/Pb0rwert/EnmZ+AW4OZPnTPI89ZPmVMLuayrD2cE86Z/il8b+gw3r3+1nKatmIkjn2so1d01QraTlMqVSsbxNrRFi9wrf+M7Q== schacon@mylaptop.local"
               }
             }
@@ -58,8 +58,8 @@ Creates a SSH key entry
 
             {
               "key": {
-                "id": 2,
-                "name": "My key",
+                "id": 1,
+                "name": "My little key",
                 "provider": "digital_ocean",
                 "fingerprint": "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff",
                 "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAklOUpkDHrfHY17SbrmTIpNLTGK9Tjom/BWDSUGPl+nafzlHDTYW7hdI4yZ5ew18JH4JW9jbhUFrviQzM7xlELEVf4h9lFX5QVkbPppSwg0cda3Pbv7kOdJ/MTyBlWXFCR+HAo3FXRitBqxiX1nKhXpHAZsMciLq8V6RjsNAQwdsdMFvSlVK/7XAt3FaoJoAsncM1Q9x5+3V0Ww68/eIFmb1zuUFljQJKprrX88XypNDvjYNby6vw/Pb0rwert/EnmZ+AW4OZPnTPI89ZPmVMLuayrD2cE86Z/il8b+gw3r3+1nKatmIkjn2so1d01QraTlMqVSsbxNrRFi9wrf+M7Q== schacon@mylaptop.local"
@@ -67,7 +67,7 @@ Creates a SSH key entry
             }
 
 ### Retrieve a list of the keys [GET]
-+ Request
++ Request (application/json)
 
     + Header
 
@@ -75,13 +75,6 @@ Creates a SSH key entry
             authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
 
 + Response 200 (application/json)
-
-    + Header
-
-            provider-token: 77e027c7447f468068a7d4fea41e7149a75a94088082c66fcf555de3977f69d3
-            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
-
-    + Body
 
             {
               "keys": [
@@ -189,7 +182,7 @@ Manages instances in different cloud providers
 
 ## Instances Collection [/api/v1/cloud/instances]
 ### Create an Instance [POST]
-+ Request
++ Request (application/json)
 
     + Header
 
@@ -199,19 +192,21 @@ Manages instances in different cloud providers
     + Body
 
             {
-              "name": "superserver",
-              "provider": "digital_ocean",
-              "region": "nyc1",
-              "operating_system": "ubuntu-14-04-x64",
-              "instance_name": "512mb",
-              "ipv6": true,
-              "private_networking": true,
-              "ssh_keys": [
-               {
-                 "id": 1,
-                 "fingerprint": "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff"
-               }
-              ]
+              "instance": {
+                "name": "superserver",
+                "provider": "digital_ocean",
+                "region": "nyc1",
+                "operating_system": "debian-8-x64",
+                "instance_name": "512mb",
+                "ipv6": true,
+                "private_networking": true,
+                "ssh_keys": [
+                  {
+                    "id": 1,
+                    "fingerprint": "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff"
+                  }
+                ]
+              }
             }
 
 + Response 201 (application/json)
@@ -224,20 +219,22 @@ Manages instances in different cloud providers
     + Body
 
             {
-              "id": 12345,
-              "name": "superserver",
-              "provider": "digital_ocean",
-              "region": "nyc1",
-              "operating_system": "ubuntu-14-04-x64",
-              "instance_name": "512mb",
-              "ipv6": true,
-              "private_networking": true,
-              "ssh_keys": [
-               {
-                 "id": 1,
-                 "fingerprint": "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff"
-               }
-              ]
+                "instance": {
+                  "id": 12345,
+                  "name": "superserver",
+                  "provider": "digital_ocean",
+                  "region": "nyc1",
+                  "operating_system": "debian-8-x64",
+                  "instance_name": "512mb",
+                  "ipv6": true,
+                  "private_networking": true,
+                  "ssh_keys": [
+                   {
+                     "id": 1,
+                     "fingerprint": "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff"
+                   }
+                  ]
+              }
             }
 
 ### Get list of instances by provider [GET]
@@ -264,7 +261,7 @@ Manages instances in different cloud providers
                   "name": "superserver",
                   "provider": "digital_ocean",
                   "region": "nyc1",
-                  "operating_system": "ubuntu-14-04-x64",
+                  "operating_system": "debian-8-x64",
                   "instance_name": "512mb",
                   "ipv6": true,
                   "private_networking": true,
@@ -306,7 +303,7 @@ Operations over a single instance and provider
               "name": "superserver",
               "provider": "digital_ocean",
               "region": "nyc1",
-              "operating_system": "ubuntu-14-04-x64",
+              "operating_system": "debian-8-x64",
               "instance_name": "512mb",
               "ipv6": true,
               "private_networking": true,
@@ -329,20 +326,22 @@ Operations over a single instance and provider
     + Body
 
             {
-              "id": 12345,
-              "name": "awesomeserver",
-              "provider": "digital_ocean",
-              "region": "nyc1",
-              "operating_system": "ubuntu-14-04-x64",
-              "instance_name": "512mb",
-              "ipv6": true,
-              "private_networking": true,
-              "ssh_keys": [
-               {
-                 "id": 1,
-                 "fingerprint": "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff"
-               }
-              ]
+              "instance"{
+                "id": 12345,
+                "name": "awesomeserver",
+                "provider": "digital_ocean",
+                "region": "nyc1",
+                "operating_system": "debian-8-x64",
+                "instance_name": "512mb",
+                "ipv6": true,
+                "private_networking": true,
+                "ssh_keys": [
+                 {
+                   "id": 1,
+                   "fingerprint": "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff"
+                 }
+                ]
+              }
             }
 
 
@@ -356,20 +355,22 @@ Operations over a single instance and provider
     + Body
 
             {
-              "id": 12345,
-              "name": "awesomeserver",
-              "provider": "digital_ocean",
-              "region": "nyc1",
-              "operating_system": "ubuntu-14-04-x64",
-              "instance_name": "512mb",
-              "ipv6": true,
-              "private_networking": true,
-              "ssh_keys": [
-               {
-                 "id": 1,
-                 "fingerprint": "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff"
-               }
-              ]
+              "instance": {
+                "id": 12345,
+                "name": "awesomeserver",
+                "provider": "digital_ocean",
+                "region": "nyc1",
+                "operating_system": "debian-8-x64",
+                "instance_name": "512mb",
+                "ipv6": true,
+                "private_networking": true,
+                "ssh_keys": [
+                 {
+                   "id": 1,
+                   "fingerprint": "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff"
+                 }
+                ]
+              }
             }
 
 ### Destroy an instance [DELETE]
