@@ -1,0 +1,43 @@
+FORMAT: 1A
+HOST: http://api.tinkerware.io
+
+# Provision API
+An API that when a deploy is provisioned.
+
+# Group Provision
+Provision management
+
+## Users Collection [/api/v1/provision]
+### Register an user [POST]
++ Request (application/json)
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "project": {
+                    "user_id": 1,
+                    "project_name": "tinkerware",
+                    "application_name": "simple_webpage",
+                    "server_provider": "digital_ocean",
+                    "configuration": {
+                        "a": "a",
+                        "b": "b"
+                    },
+                    "repository": {
+                        "provider": "github",
+                        "name": "ghost-blog"
+                    },
+                    "ssh_keys": [
+                      {
+                        "id": 1,
+                        "fingerprint": "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff"
+                      }
+                    ]
+                }
+            }
+
++ Response 202
