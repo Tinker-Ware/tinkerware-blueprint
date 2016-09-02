@@ -238,7 +238,7 @@ Manages instances in different cloud providers
             }
 
 ### Get list of instances by provider [GET]
-+ Request
++ Request (application/json)
 
     + Header
 
@@ -279,7 +279,7 @@ Manages instances in different cloud providers
 Operations over a single instance and provider
 
 + Parameters
-      + id (required, number, `1`) ... Numeric `id` of the instance to perform action with. Has example value.
+      + id (required, number, `12345`) ... Numeric `id` of the instance to perform action with. Has example value.
 
 ### Get an instance by ID and provider [GET]
 + Request
@@ -299,20 +299,34 @@ Operations over a single instance and provider
     + Body
 
             {
-              "id": 12345,
-              "name": "superserver",
-              "provider": "digital_ocean",
-              "region": "nyc1",
-              "operating_system": "debian-8-x64",
-              "instance_name": "512mb",
-              "ipv6": true,
-              "private_networking": true,
-              "ssh_keys": [
-               {
-                 "id": 1,
-                 "fingerprint": "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff"
-               }
-              ]
+              "instance":{
+                "id": 12345,
+                "name": "superserver",
+                "provider": "digital_ocean",
+                "region": "nyc1",
+                "operating_system": "debian-8-x64",
+                "instance_name": "512mb",
+                "ipv6": true,
+                "private_networking": true,
+                "ssh_keys": [{
+                  "id": 1,
+                  "fingerprint": "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff"
+                }],
+                "networks": {
+                  "v4": [{
+                    "ip_address": "104.131.186.241",
+                    "netmask": "255.255.240.0",
+                    "gateway": "104.131.176.1",
+                    "type": "public"
+                  }],
+                  "v6": [{
+                    "ip_address": "2604:A880:0800:0010:0000:0000:031D:2001",
+                    "netmask": 64,
+                    "gateway": "2604:A880:0800:0010:0000:0000:0000:0001",
+                    "type": "public"
+                  }]
+                }
+              }
             }
 
 ### Modify an Instance [PUT]
