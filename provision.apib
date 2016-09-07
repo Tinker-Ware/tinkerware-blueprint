@@ -18,26 +18,24 @@ Provision management
     + Body
 
             {
-                "project": {
-                    "user_id": 1,
-                    "project_name": "tinkerware",
-                    "application_name": "simple_webpage",
-                    "server_provider": "digital_ocean",
-                    "configuration": {
-                        "a": "a",
-                        "b": "b"
-                    },
-                    "repository": {
-                        "provider": "github",
-                        "name": "ghost-blog"
-                    },
-                    "ssh_keys": [
-                      {
-                        "id": 1,
-                        "fingerprint": "00:11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff"
-                      }
-                    ]
-                }
+            	"user_id": 99999,
+            	"ssh_keys": [{
+            		"title": "some content",
+            		"key": "some_content",
+            		"fingerprint": null
+            	}],
+            	"server_provider": "digital_ocean",
+            	"repository": {
+            		"provider": "github",
+            		"name": "user/reponame"
+            	},
+            	"project_name": "tinkerware.web",
+            	"id": "57cf8fe8ce40ef0bbf803d66",
+            	"configuration": {
+            		"b": "b",
+            		"a": "a"
+            	},
+            	"application_name": "codeigniter"
             }
 
 + Response 202
