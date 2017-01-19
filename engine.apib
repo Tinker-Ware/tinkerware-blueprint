@@ -544,3 +544,146 @@ Server management
             authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
 
 + Response 204
+
+# Group Development Environment
+Development files management
+
+## Development Environment Collection [/api/v1/project/{projectid}/dev_environment]
+
++ Parameters
+    + projectid (required, string, `507f1f77bcf86cd799439011`) ... `projectid` of the project
+
+### Add a new Development Environment [POST]
++ Request (application/json)
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+              "development_environment":
+              {
+                "project_id":"507f1f77bcf86cd799439011",
+                "path":"/path/to/file/a.zip"
+              }
+            }
+
++ Response 201 (application/json)
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "development_environment": {
+                    "id": "a3hk4lf2g0n1vxny5mninv8fsqwzqf",
+                    "project_id": "507f1f77bcf86cd799439011",
+                    "path": "/path/to/file/a.zip"
+                }
+            }
+
+### Get a list of a projects development environments [GET]
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
++ Response 200 (application/json)
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+    + Body
+
+            {
+                "deploys": [
+                  {
+                    "id": "a3hk4lf2g0n1vxny5mninv8fsqwzqf",
+                    "path": "/path/to/file/a.zip"
+                  },
+                  {
+                    "id": "a3hk4lf2g0n1vxny5mninv8fsqwzqg",
+                    "path": "/path/to/file/b.zip"
+                  },
+                  {
+                    "id": "a3hk4lf2g0n1vxny5mninv8fsqwzqg",
+                    "path": "/path/to/file/c.zip"
+                  },
+                  {
+                    "id": "a3hk4lf2g0n1vxny5mninv8fsqwzqi",
+                    "path": "/path/to/file/d.zip"
+                  }
+                ]
+            }
+
+## Development Environment Collection [/api/v1/project/{projectid}/dev_environment/{id}]
++ Parameters
+    + id (required, string, `a3hk4lf2g0n1vxny5mninv8fsqwzqf`) ... `id` of the development environment
+    + projectid (required, string, `507f1f77bcf86cd799439011`) ... `projectid` of the project
+
+### Get a single Deploy [GET]
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
++ Response 200 (application/json)
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "development_environment": {
+                  "id": "a3hk4lf2g0n1vxny5mninv8fsqwzqf",
+                  "path": "/path/to/file/a.zip"
+                }
+            }
+
+### Modify an existing Deploy [PUT]
++ Request (application/json)
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "development_environment": {
+                  "id": "a3hk4lf2g0n1vxny5mninv8fsqwzqf",
+                  "path": "/path/to/file/a_1.zip"
+                }
+            }
+
++ Response 200 (application/json)
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
+    + Body
+
+            {
+                "deploy": {
+                  "id": "a3hk4lf2g0n1vxny5mninv8fsqwzqf",
+                  "path": "/path/to/file/a_1.zip"
+                }
+            }
+
+### Delete a Deploy [DELETE]
+
++ Request
+
+    + Header
+
+            authorization: Bearer qphYSqjEFk1RcFxYqqIIFk4vaBJvDoBr3t9aHTp1JFEAO0NS7ECyLJJyUPybOUNf
+
++ Response 204
